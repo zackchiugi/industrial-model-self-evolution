@@ -1,0 +1,571 @@
+{
+  "dataset": "B",
+  "train_rows": 7032,
+  "validation_rows": 1679,
+  "groups": {
+    "train": [
+      "Bearing1_1",
+      "Bearing1_2",
+      "Bearing1_3",
+      "Bearing2_1",
+      "Bearing2_2",
+      "Bearing2_3",
+      "Bearing3_1",
+      "Bearing3_2",
+      "Bearing3_3"
+    ],
+    "validation": [
+      "Bearing1_4",
+      "Bearing2_4",
+      "Bearing3_4"
+    ]
+  },
+  "input_features": 34,
+  "parameters": 865,
+  "baseline": {
+    "mae": 563.1058414514887,
+    "rmse": 681.1598326043113,
+    "overprediction_fraction": 0.3240023823704586
+  },
+  "selected": {
+    "mae": 563.8643570514375,
+    "rmse": 666.8809504539922,
+    "overprediction_fraction": 0.34008338296605123
+  },
+  "accepted_rounds": [
+    1
+  ],
+  "training_seconds": 0.3400754529999972,
+  "train_sha256": "sha256:71b2663fffd3d7ef6dca8a7b3feb31c3feb96c57f385335d03041a5fa431054a",
+  "validation_sha256": "sha256:23673a66bc22a166bf2f47b18f9c9d594f7e66a9aad88ddbccbcaea2310d9eb3",
+  "baseline_checkpoint_sha256": "sha256:c7d819fcee9d25459c583b5ffdb35593d4a47b524ed152d0226bf81a283314b4",
+  "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+  "subgroups": {
+    "Bearing1_4": {
+      "n": 122,
+      "baseline": {
+        "mae": 175.58693393738474,
+        "rmse": 241.9807988305028,
+        "overprediction_fraction": 0.860655737704918
+      },
+      "selected": {
+        "mae": 222.44865222995517,
+        "rmse": 282.8742960744966,
+        "overprediction_fraction": 0.9590163934426229
+      }
+    },
+    "Bearing2_4": {
+      "n": 42,
+      "baseline": {
+        "mae": 328.14713559610186,
+        "rmse": 390.81504161336534,
+        "overprediction_fraction": 0.9523809523809523
+      },
+      "selected": {
+        "mae": 273.9903240231585,
+        "rmse": 339.44253362974655,
+        "overprediction_fraction": 0.9761904761904762
+      }
+    },
+    "Bearing3_4": {
+      "n": 1515,
+      "baseline": {
+        "mae": 600.82569119581,
+        "rmse": 710.8130722393482,
+        "overprediction_fraction": 0.2633663366336634
+      },
+      "selected": {
+        "mae": 599.3940107645783,
+        "rmse": 695.1508313461092,
+        "overprediction_fraction": 0.2726072607260726
+      }
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "history_ids_read": [],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:c7d819fcee9d25459c583b5ffdb35593d4a47b524ed152d0226bf81a283314b4",
+      "candidate_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "learning_rate": 0.003,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 825,
+      "final_steps": 1100,
+      "initial_epochs": 15,
+      "final_epochs": 20,
+      "seed": 42,
+      "losses": [
+        0.0904629740941074,
+        0.08795341933808377,
+        0.08463908084163344,
+        0.08256776020521778,
+        0.08261666549208269
+      ],
+      "training_seconds": 0.03138830500000722,
+      "validation_before": {
+        "mae": 563.1058414514887,
+        "rmse": 681.1598326043113,
+        "overprediction_fraction": 0.3240023823704586
+      },
+      "validation_candidate": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "accepted": true,
+      "reason": "Accept: strict primary metric improvement.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 2,
+      "history_ids_read": [
+        1
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:564f2467528b7d389ca8b30016409bb9fc868d9b080682460b2d6370119afacb",
+      "learning_rate": 0.0024000000000000002,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07893191540856527,
+        0.07759866330307694,
+        0.07602376100997708,
+        0.07517047708036344,
+        0.07376779821545124
+      ],
+      "training_seconds": 0.03347239600003604,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 581.0906638947669,
+        "rmse": 686.0103631397354,
+        "overprediction_fraction": 0.32638475282906493
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 3,
+      "history_ids_read": [
+        1,
+        2
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:8b5fd98ba2e68bba1d9cae87fa8328dc5d3ebbf98bdf7efd26c3fd04a458ca78",
+      "learning_rate": 0.0012000000000000001,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07812229985589529,
+        0.07713754134768584,
+        0.0763474552965537,
+        0.0757147038273835,
+        0.07495046346048656
+      ],
+      "training_seconds": 0.03356980199998816,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 581.3504062206707,
+        "rmse": 687.169709806666,
+        "overprediction_fraction": 0.3287671232876712
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 4,
+      "history_ids_read": [
+        1,
+        2,
+        3
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:0832041b47ff8db8401e834cffc4ebb03f13bf81721e90662349ac17e398976c",
+      "learning_rate": 0.0006000000000000001,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07820481658887712,
+        0.07702435298264679,
+        0.07662892833024497,
+        0.07631875301591468,
+        0.07597336130082327
+      ],
+      "training_seconds": 0.033038441000030616,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 571.5989658857085,
+        "rmse": 677.8257471271712,
+        "overprediction_fraction": 0.33412745681953543
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 5,
+      "history_ids_read": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:7c2aef0e8a69cda7575a8f3d8e290c52a598eb43ebeeea6d6edba5d04246700a",
+      "learning_rate": 0.00030000000000000003,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07800923216686083,
+        0.07705207281215054,
+        0.07677876647836196,
+        0.07659229005667048,
+        0.07642010231454902
+      ],
+      "training_seconds": 0.03753008099999988,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 571.1933007818267,
+        "rmse": 678.8261967625745,
+        "overprediction_fraction": 0.334723049434187
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 6,
+      "history_ids_read": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:3c5f9b79b365e7f0e90b14387d5d23f3f250c24447024864e544938c16a57672",
+      "learning_rate": 0.00015000000000000001,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07810913167624564,
+        0.07724486445004994,
+        0.07693608901955862,
+        0.07679021300114218,
+        0.07670918357366353
+      ],
+      "training_seconds": 0.03507813599998144,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 568.6483335757767,
+        "rmse": 675.810649619135,
+        "overprediction_fraction": 0.3353186420488386
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 7,
+      "history_ids_read": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:fdd04903143a7f78008764eb2a6aabe21f9f310b37428aed58eb713661863ef6",
+      "learning_rate": 7.500000000000001e-05,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07838729431788934,
+        0.07741390653603976,
+        0.07713918252171675,
+        0.0770010875200133,
+        0.07694058266617321
+      ],
+      "training_seconds": 0.03248526799995943,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 568.0906355975889,
+        "rmse": 674.4884695771509,
+        "overprediction_fraction": 0.33412745681953543
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 8,
+      "history_ids_read": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:34ce3c6f340e6407ebe20467d3ecf6d272e11195885bccce843793ca670c1917",
+      "learning_rate": 3.7500000000000003e-05,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07881072935765346,
+        0.07758040284213595,
+        0.07736816091362755,
+        0.0772320248701917,
+        0.07716039472554871
+      ],
+      "training_seconds": 0.03962259500002574,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 568.1315006552873,
+        "rmse": 673.6877924606576,
+        "overprediction_fraction": 0.3353186420488386
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 9,
+      "history_ids_read": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:842ed09f76040f6d6a57c0b817bedc09ebd348ed9da1c6eafbdb327e6cc83c94",
+      "learning_rate": 1.8750000000000002e-05,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07931443645644752,
+        0.0779670401004669,
+        0.07761833768318355,
+        0.07746678070923764,
+        0.0773838547642914
+      ],
+      "training_seconds": 0.03210552600000938,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 568.5462898826029,
+        "rmse": 673.5014348925379,
+        "overprediction_fraction": 0.33650982727814177
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    },
+    {
+      "round": 10,
+      "history_ids_read": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+      "parent_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "candidate_checkpoint_sha256": "sha256:8ac26541eaf1cbdad5d20dc9fa7fbd85f95ecceb4185ec5f87984bd8624dd65a",
+      "learning_rate": 9.375000000000001e-06,
+      "epochs": 5,
+      "batch_size": 128,
+      "initial_steps": 1100,
+      "final_steps": 1375,
+      "initial_epochs": 20,
+      "final_epochs": 25,
+      "seed": 42,
+      "losses": [
+        0.07972872190500269,
+        0.07862421196774912,
+        0.07807739401078025,
+        0.07779773040892987,
+        0.0776503099392437
+      ],
+      "training_seconds": 0.031784902999959286,
+      "validation_before": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      },
+      "validation_candidate": {
+        "mae": 568.8032911377513,
+        "rmse": 673.4433585231984,
+        "overprediction_fraction": 0.33650982727814177
+      },
+      "accepted": false,
+      "reason": "Reject: no strict primary metric improvement; retain parent.",
+      "model_call_ids": [],
+      "execution": "local deterministic controller; no platform or LLM calls",
+      "selected_checkpoint_sha256": "sha256:a2926c0606cc268092630d55e0598f61349e0b630cdcc32d727a47b7448a6e19",
+      "validation_selected": {
+        "mae": 563.8643570514375,
+        "rmse": 666.8809504539922,
+        "overprediction_fraction": 0.34008338296605123
+      }
+    }
+  ],
+  "class_counts": null
+}

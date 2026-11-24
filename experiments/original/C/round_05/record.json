@@ -1,0 +1,51 @@
+{
+  "round": 5,
+  "history_ids_read": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+  "parent_checkpoint_sha256": "sha256:e84809a484e04c0f27b5bdfa26504c054e3d758dc2a3f4f98056c932e57acf2d",
+  "candidate_checkpoint_sha256": "sha256:9781c1ea3d2bc4af9dca57e3cbdf20dcac66877cabd471374f4acf6ce52abfdd",
+  "learning_rate": 0.0005120000000000001,
+  "epochs": 5,
+  "batch_size": 256,
+  "initial_steps": 13260,
+  "final_steps": 15470,
+  "initial_epochs": 30,
+  "final_epochs": 35,
+  "seed": 42,
+  "losses": [
+    0.42344745293524405,
+    0.4231941580287162,
+    0.42299995381766803,
+    0.42237187589469594,
+    0.4230935543603667
+  ],
+  "training_seconds": 0.4062050189999127,
+  "validation_before": {
+    "mae": 37.73235205613386,
+    "rmse": 51.72145276744804,
+    "overprediction_fraction": 0.557594689574385,
+    "nasa_score": 3967632954.9363914
+  },
+  "validation_candidate": {
+    "mae": 38.04790312389698,
+    "rmse": 51.575613698076324,
+    "overprediction_fraction": 0.5815002820078963,
+    "nasa_score": 3175503870.967641
+  },
+  "accepted": true,
+  "reason": "Accept: strict primary metric improvement.",
+  "model_call_ids": [],
+  "execution": "local deterministic controller; no platform or LLM calls",
+  "selected_checkpoint_sha256": "sha256:9781c1ea3d2bc4af9dca57e3cbdf20dcac66877cabd471374f4acf6ce52abfdd",
+  "validation_selected": {
+    "mae": 38.04790312389698,
+    "rmse": 51.575613698076324,
+    "overprediction_fraction": 0.5815002820078963,
+    "nasa_score": 3175503870.967641
+  }
+}

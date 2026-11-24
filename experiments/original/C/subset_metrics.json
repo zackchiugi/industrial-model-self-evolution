@@ -1,0 +1,30 @@
+[
+  {
+    "subset": "FD001",
+    "n": 3210,
+    "baseline_rmse": 42.83453261937968,
+    "selected_rmse": 40.56507720582233,
+    "selected_mae": 31.49434885480221
+  },
+  {
+    "subset": "FD002",
+    "n": 7581,
+    "baseline_rmse": 41.152059506011675,
+    "selected_rmse": 40.741139174828426,
+    "selected_mae": 31.557960635246108
+  },
+  {
+    "subset": "FD003",
+    "n": 3555,
+    "baseline_rmse": 55.355939500721526,
+    "selected_rmse": 51.66106135505048,
+    "selected_mae": 39.47595594313178
+  },
+  {
+    "subset": "FD004",
+    "n": 8703,
+    "baseline_rmse": 63.236794880334166,
+    "selected_rmse": 62.2188433832141,
+    "selected_mae": 44.45165205711522
+  }
+]

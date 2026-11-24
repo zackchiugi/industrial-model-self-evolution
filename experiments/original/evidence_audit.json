@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "task": "A",
+      "candidate_chains_checked": 10,
+      "final_metrics_recomputed": true,
+      "scalers_and_schema_preserved": true
+    },
+    {
+      "task": "B",
+      "candidate_chains_checked": 10,
+      "final_metrics_recomputed": true,
+      "scalers_and_schema_preserved": true
+    },
+    {
+      "task": "C",
+      "candidate_chains_checked": 10,
+      "final_metrics_recomputed": true,
+      "scalers_and_schema_preserved": true
+    }
+  ]
+}
