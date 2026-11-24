@@ -1,0 +1,3 @@
+numpy==2.2.4
+# Python 3.13; contest_harness 1.0.2 is vendored in sdk/.
+# The image uses Debian reference BLAS/LAPACK, not a pip OpenBLAS wheel.

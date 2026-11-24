@@ -1,0 +1,1 @@
+Docker-save manifest and layer SHA-256 agree. Linux/amd64. Docker daemon unavailable; formal load/run remains pending.

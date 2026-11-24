@@ -1,0 +1,199 @@
+{
+  "round": 6,
+  "history_ids_read": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+  "parent_checkpoint_sha256": "sha256:959286f4ce1c74864661468efd2c59fae3ef621adedd7078af06ac7ab57bc064",
+  "candidate_checkpoint_sha256": "sha256:0661340084a9143696a4e1ba493fe36c4bab44b105f1ef7517f37995819b51cf",
+  "learning_rate": 0.00015000000000000001,
+  "epochs": 5,
+  "batch_size": 128,
+  "initial_steps": 100,
+  "final_steps": 120,
+  "initial_epochs": 25,
+  "final_epochs": 30,
+  "seed": 42,
+  "losses": [
+    0.10477707900916551,
+    0.1044106318691209,
+    0.10399520467241449,
+    0.10360081306319072,
+    0.10333388036722177
+  ],
+  "training_seconds": 0.011076566000156163,
+  "validation_before": {
+    "accuracy": 0.885048231511254,
+    "macro_f1": 0.7257820444850657,
+    "confusion_matrix": [
+      [
+        158,
+        5,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        25,
+        309,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        100,
+        0,
+        0,
+        0
+      ],
+      [
+        108,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        529,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ],
+    "macro_f1_fixed6": 0.7257820444850657
+  },
+  "validation_candidate": {
+    "accuracy": 0.8842443729903537,
+    "macro_f1": 0.7182721304563326,
+    "confusion_matrix": [
+      [
+        158,
+        6,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        25,
+        309,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        100,
+        0,
+        0,
+        0
+      ],
+      [
+        108,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        528,
+        4
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ],
+    "macro_f1_fixed6": 0.7182721304563326
+  },
+  "accepted": false,
+  "reason": "Reject: no strict primary metric improvement; retain parent.",
+  "model_call_ids": [],
+  "execution": "local deterministic controller; no platform or LLM calls",
+  "selected_checkpoint_sha256": "sha256:959286f4ce1c74864661468efd2c59fae3ef621adedd7078af06ac7ab57bc064",
+  "validation_selected": {
+    "accuracy": 0.885048231511254,
+    "macro_f1": 0.7257820444850657,
+    "confusion_matrix": [
+      [
+        158,
+        5,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        25,
+        309,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        100,
+        0,
+        0,
+        0
+      ],
+      [
+        108,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        529,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ],
+    "macro_f1_fixed6": 0.7257820444850657
+  }
+}

@@ -1,0 +1,18 @@
+test_constant_shift (test_drift.DriftTests.test_constant_shift) ... ok
+test_identity (test_drift.DriftTests.test_identity) ... ok
+test_nonfinite (test_drift.DriftTests.test_nonfinite) ... ok
+test_reference_immutable (test_drift.DriftTests.test_reference_immutable) ... ok
+test_schema (test_drift.DriftTests.test_schema) ... ok
+test_shift_localization (test_drift.DriftTests.test_shift_localization) ... ok
+test_small_window (test_drift.DriftTests.test_small_window) ... ok
+test_all_validation_predictions (test_submission.Tests.test_all_validation_predictions) ... ok
+test_bad_model_json (test_submission.Tests.test_bad_model_json) ... ok
+test_parent_digest_tampering (test_submission.Tests.test_parent_digest_tampering) ... ok
+test_protocol_accept (test_submission.Tests.test_protocol_accept) ... ok
+test_protocol_reject (test_submission.Tests.test_protocol_reject) ... ok
+test_unknown_metrics_retain_parent (test_submission.Tests.test_unknown_metrics_retain_parent) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 8.370s
+
+OK

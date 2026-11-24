@@ -1,0 +1,48 @@
+{
+  "round": 5,
+  "history_ids_read": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "hypothesis": "Continue the selected parent for five epochs; reduce learning rate after examining prior acceptance.",
+  "parent_checkpoint_sha256": "sha256:467f7910bbd45b782e52a7f6d72e3fb6030c08fccff9e5a38d06fb5ff5a88592",
+  "candidate_checkpoint_sha256": "sha256:5459e5a0febf64a73e4942d148e146a93e3aa45fc5cdacef8bae31cc50215830",
+  "learning_rate": 0.00030000000000000003,
+  "epochs": 5,
+  "batch_size": 128,
+  "initial_steps": 1100,
+  "final_steps": 1375,
+  "initial_epochs": 20,
+  "final_epochs": 25,
+  "seed": 42,
+  "losses": [
+    0.07800923216686081,
+    0.07705207281215054,
+    0.07677876647836196,
+    0.0765922900566705,
+    0.076420102314549
+  ],
+  "training_seconds": 0.05952137100030086,
+  "validation_before": {
+    "mae": 563.8643570514375,
+    "rmse": 666.8809504539922,
+    "overprediction_fraction": 0.34008338296605123
+  },
+  "validation_candidate": {
+    "mae": 571.1933007818267,
+    "rmse": 678.8261967625746,
+    "overprediction_fraction": 0.334723049434187
+  },
+  "accepted": false,
+  "reason": "Reject: no strict primary metric improvement; retain parent.",
+  "model_call_ids": [],
+  "execution": "local deterministic controller; no platform or LLM calls",
+  "selected_checkpoint_sha256": "sha256:467f7910bbd45b782e52a7f6d72e3fb6030c08fccff9e5a38d06fb5ff5a88592",
+  "validation_selected": {
+    "mae": 563.8643570514375,
+    "rmse": 666.8809504539922,
+    "overprediction_fraction": 0.34008338296605123
+  }
+}

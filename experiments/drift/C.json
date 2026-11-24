@@ -1,0 +1,414 @@
+{
+  "dataset": "C",
+  "execution": "local_input_drift_audit",
+  "reference_sha256": "26b767a8c2e6cc37044b8f677f56993c29aebb6ddeeff95aab32005abd7f1df1",
+  "train": {
+    "status": "measured",
+    "alert": false,
+    "reference_rows": 2048,
+    "observed_rows": 113089,
+    "sampled_observed_rows": 2048,
+    "ks_threshold": 0.1,
+    "flagged_features": 0,
+    "features": [
+      {
+        "index": 1,
+        "path": "[[\"key\",\"sensors\"],[\"index\",1]]",
+        "ks": 0.04296875,
+        "psi": 0.00973887740217214,
+        "standardized_mean_shift": -0.059620154762120646,
+        "alert": false
+      },
+      {
+        "index": 7,
+        "path": "[[\"key\",\"sensors\"],[\"index\",7]]",
+        "ks": 0.041015625,
+        "psi": 0.02652851947374359,
+        "standardized_mean_shift": -0.05135728833237877,
+        "alert": false
+      },
+      {
+        "index": 2,
+        "path": "[[\"key\",\"sensors\"],[\"index\",2]]",
+        "ks": 0.0380859375,
+        "psi": 0.016559846496889487,
+        "standardized_mean_shift": -0.057227298416073075,
+        "alert": false
+      },
+      {
+        "index": 19,
+        "path": "[[\"key\",\"sensors\"],[\"index\",19]]",
+        "ks": 0.0380859375,
+        "psi": 0.013018102269622757,
+        "standardized_mean_shift": -0.055896118777371,
+        "alert": false
+      },
+      {
+        "index": 3,
+        "path": "[[\"key\",\"sensors\"],[\"index\",3]]",
+        "ks": 0.03759765625,
+        "psi": 0.008833221488320688,
+        "standardized_mean_shift": -0.05433292480836235,
+        "alert": false
+      },
+      {
+        "index": 0,
+        "path": "[[\"key\",\"sensors\"],[\"index\",0]]",
+        "ks": 0.03662109375,
+        "psi": 0.005986177604162877,
+        "standardized_mean_shift": -0.05727703591729411,
+        "alert": false
+      },
+      {
+        "index": 17,
+        "path": "[[\"key\",\"sensors\"],[\"index\",17]]",
+        "ks": 0.03662109375,
+        "psi": 0.005986177604162877,
+        "standardized_mean_shift": -0.051360808361392854,
+        "alert": false
+      },
+      {
+        "index": 14,
+        "path": "[[\"key\",\"sensors\"],[\"index\",14]]",
+        "ks": 0.0361328125,
+        "psi": 0.010363217734276018,
+        "standardized_mean_shift": 0.04088693905215979,
+        "alert": false
+      },
+      {
+        "index": 6,
+        "path": "[[\"key\",\"sensors\"],[\"index\",6]]",
+        "ks": 0.03564453125,
+        "psi": 0.015771286680458865,
+        "standardized_mean_shift": -0.05588879923700739,
+        "alert": false
+      },
+      {
+        "index": 11,
+        "path": "[[\"key\",\"sensors\"],[\"index\",11]]",
+        "ks": 0.03369140625,
+        "psi": 0.01845371739251514,
+        "standardized_mean_shift": -0.05573100926580401,
+        "alert": false
+      },
+      {
+        "index": 21,
+        "path": "[[\"key\",\"settings\"],[\"index\",0]]",
+        "ks": 0.03369140625,
+        "psi": 0.010890479494945971,
+        "standardized_mean_shift": 0.04828552132738204,
+        "alert": false
+      },
+      {
+        "index": 10,
+        "path": "[[\"key\",\"sensors\"],[\"index\",10]]",
+        "ks": 0.033203125,
+        "psi": 0.01059898500169036,
+        "standardized_mean_shift": -0.052571253067814905,
+        "alert": false
+      },
+      {
+        "index": 16,
+        "path": "[[\"key\",\"sensors\"],[\"index\",16]]",
+        "ks": 0.033203125,
+        "psi": 0.013819725020901587,
+        "standardized_mean_shift": -0.05819896450466278,
+        "alert": false
+      },
+      {
+        "index": 8,
+        "path": "[[\"key\",\"sensors\"],[\"index\",8]]",
+        "ks": 0.03271484375,
+        "psi": 0.011005387680528762,
+        "standardized_mean_shift": -0.05421759372420144,
+        "alert": false
+      },
+      {
+        "index": 20,
+        "path": "[[\"key\",\"sensors\"],[\"index\",20]]",
+        "ks": 0.03125,
+        "psi": 0.011553699296706854,
+        "standardized_mean_shift": -0.05538050266328871,
+        "alert": false
+      },
+      {
+        "index": 22,
+        "path": "[[\"key\",\"settings\"],[\"index\",1]]",
+        "ks": 0.03125,
+        "psi": 0.012303370206855017,
+        "standardized_mean_shift": 0.04211356769264247,
+        "alert": false
+      },
+      {
+        "index": 5,
+        "path": "[[\"key\",\"sensors\"],[\"index\",5]]",
+        "ks": 0.0302734375,
+        "psi": 0.005486570636954256,
+        "standardized_mean_shift": -0.0557679150970111,
+        "alert": false
+      },
+      {
+        "index": 9,
+        "path": "[[\"key\",\"sensors\"],[\"index\",9]]",
+        "ks": 0.0302734375,
+        "psi": 0.007556597694942627,
+        "standardized_mean_shift": -0.04204118351251424,
+        "alert": false
+      },
+      {
+        "index": 4,
+        "path": "[[\"key\",\"sensors\"],[\"index\",4]]",
+        "ks": 0.02880859375,
+        "psi": 0.005986177604162877,
+        "standardized_mean_shift": -0.05486211624064729,
+        "alert": false
+      },
+      {
+        "index": 12,
+        "path": "[[\"key\",\"sensors\"],[\"index\",12]]",
+        "ks": 0.01953125,
+        "psi": 0.013033900031595281,
+        "standardized_mean_shift": -0.03022429192683384,
+        "alert": false
+      },
+      {
+        "index": 13,
+        "path": "[[\"key\",\"sensors\"],[\"index\",13]]",
+        "ks": 0.01904296875,
+        "psi": 0.013114069830735755,
+        "standardized_mean_shift": -0.021776555760907104,
+        "alert": false
+      },
+      {
+        "index": 15,
+        "path": "[[\"key\",\"sensors\"],[\"index\",15]]",
+        "ks": 0.01708984375,
+        "psi": 0.0011669958260003277,
+        "standardized_mean_shift": -0.034199670238039145,
+        "alert": false
+      },
+      {
+        "index": 18,
+        "path": "[[\"key\",\"sensors\"],[\"index\",18]]",
+        "ks": 0.00927734375,
+        "psi": 0.0008796669974707139,
+        "standardized_mean_shift": -0.03026586834016329,
+        "alert": false
+      },
+      {
+        "index": 23,
+        "path": "[[\"key\",\"settings\"],[\"index\",2]]",
+        "ks": 0.00927734375,
+        "psi": 0.0008796669974707139,
+        "standardized_mean_shift": -0.030265868340161556,
+        "alert": false
+      }
+    ],
+    "interpretation": "Input-distribution alarm; correlated rows, no calibrated p-values; feature ranking is not causal attribution."
+  },
+  "validation": {
+    "status": "measured",
+    "alert": false,
+    "reference_rows": 2048,
+    "observed_rows": 23049,
+    "sampled_observed_rows": 2048,
+    "ks_threshold": 0.1,
+    "flagged_features": 0,
+    "features": [
+      {
+        "index": 12,
+        "path": "[[\"key\",\"sensors\"],[\"index\",12]]",
+        "ks": 0.0458984375,
+        "psi": 0.021914327316977438,
+        "standardized_mean_shift": -0.015857622091580793,
+        "alert": false
+      },
+      {
+        "index": 13,
+        "path": "[[\"key\",\"sensors\"],[\"index\",13]]",
+        "ks": 0.03955078125,
+        "psi": 0.026170413459785054,
+        "standardized_mean_shift": -0.0033187205027335152,
+        "alert": false
+      },
+      {
+        "index": 8,
+        "path": "[[\"key\",\"sensors\"],[\"index\",8]]",
+        "ks": 0.0302734375,
+        "psi": 0.014489316369932214,
+        "standardized_mean_shift": -0.008023711116737713,
+        "alert": false
+      },
+      {
+        "index": 5,
+        "path": "[[\"key\",\"sensors\"],[\"index\",5]]",
+        "ks": 0.02880859375,
+        "psi": 0.01877987249679004,
+        "standardized_mean_shift": -0.0052445908722225315,
+        "alert": false
+      },
+      {
+        "index": 7,
+        "path": "[[\"key\",\"sensors\"],[\"index\",7]]",
+        "ks": 0.02783203125,
+        "psi": 0.02619378209985471,
+        "standardized_mean_shift": -0.01455480687858763,
+        "alert": false
+      },
+      {
+        "index": 6,
+        "path": "[[\"key\",\"sensors\"],[\"index\",6]]",
+        "ks": 0.02734375,
+        "psi": 0.01592137166239011,
+        "standardized_mean_shift": -0.004414460169913769,
+        "alert": false
+      },
+      {
+        "index": 14,
+        "path": "[[\"key\",\"sensors\"],[\"index\",14]]",
+        "ks": 0.0263671875,
+        "psi": 0.018299039524768804,
+        "standardized_mean_shift": 0.00462487537786691,
+        "alert": false
+      },
+      {
+        "index": 11,
+        "path": "[[\"key\",\"sensors\"],[\"index\",11]]",
+        "ks": 0.025390625,
+        "psi": 0.012702434925026677,
+        "standardized_mean_shift": -0.004338626738977746,
+        "alert": false
+      },
+      {
+        "index": 19,
+        "path": "[[\"key\",\"sensors\"],[\"index\",19]]",
+        "ks": 0.025390625,
+        "psi": 0.013881129410331351,
+        "standardized_mean_shift": -0.005875390536999021,
+        "alert": false
+      },
+      {
+        "index": 20,
+        "path": "[[\"key\",\"sensors\"],[\"index\",20]]",
+        "ks": 0.02490234375,
+        "psi": 0.012829539803187724,
+        "standardized_mean_shift": -0.005651305264513919,
+        "alert": false
+      },
+      {
+        "index": 1,
+        "path": "[[\"key\",\"sensors\"],[\"index\",1]]",
+        "ks": 0.0244140625,
+        "psi": 0.007895761816862143,
+        "standardized_mean_shift": -0.00833115979345881,
+        "alert": false
+      },
+      {
+        "index": 3,
+        "path": "[[\"key\",\"sensors\"],[\"index\",3]]",
+        "ks": 0.02294921875,
+        "psi": 0.007072249474755122,
+        "standardized_mean_shift": 0.0033733181136918087,
+        "alert": false
+      },
+      {
+        "index": 16,
+        "path": "[[\"key\",\"sensors\"],[\"index\",16]]",
+        "ks": 0.02294921875,
+        "psi": 0.007138817438994332,
+        "standardized_mean_shift": -0.00531381849825182,
+        "alert": false
+      },
+      {
+        "index": 2,
+        "path": "[[\"key\",\"sensors\"],[\"index\",2]]",
+        "ks": 0.0224609375,
+        "psi": 0.017614907269444827,
+        "standardized_mean_shift": -0.0036109087745541373,
+        "alert": false
+      },
+      {
+        "index": 21,
+        "path": "[[\"key\",\"settings\"],[\"index\",0]]",
+        "ks": 0.02099609375,
+        "psi": 0.008944462497273903,
+        "standardized_mean_shift": 0.0019906859693559343,
+        "alert": false
+      },
+      {
+        "index": 10,
+        "path": "[[\"key\",\"sensors\"],[\"index\",10]]",
+        "ks": 0.02001953125,
+        "psi": 0.014969563886406745,
+        "standardized_mean_shift": 0.0033043232570696113,
+        "alert": false
+      },
+      {
+        "index": 17,
+        "path": "[[\"key\",\"sensors\"],[\"index\",17]]",
+        "ks": 0.02001953125,
+        "psi": 0.005743772302293284,
+        "standardized_mean_shift": -0.01461836795679034,
+        "alert": false
+      },
+      {
+        "index": 22,
+        "path": "[[\"key\",\"settings\"],[\"index\",1]]",
+        "ks": 0.01611328125,
+        "psi": 0.01117914681378148,
+        "standardized_mean_shift": -0.011390378543327993,
+        "alert": false
+      },
+      {
+        "index": 0,
+        "path": "[[\"key\",\"sensors\"],[\"index\",0]]",
+        "ks": 0.01513671875,
+        "psi": 0.005743772302293284,
+        "standardized_mean_shift": -0.005571119725042188,
+        "alert": false
+      },
+      {
+        "index": 4,
+        "path": "[[\"key\",\"sensors\"],[\"index\",4]]",
+        "ks": 0.01513671875,
+        "psi": 0.005743772302293284,
+        "standardized_mean_shift": -0.004737300927667124,
+        "alert": false
+      },
+      {
+        "index": 9,
+        "path": "[[\"key\",\"sensors\"],[\"index\",9]]",
+        "ks": 0.01416015625,
+        "psi": 0.004150563732832618,
+        "standardized_mean_shift": 0.008794505164634895,
+        "alert": false
+      },
+      {
+        "index": 15,
+        "path": "[[\"key\",\"sensors\"],[\"index\",15]]",
+        "ks": 0.01171875,
+        "psi": 0.0005496949046881335,
+        "standardized_mean_shift": 0.023451202448941704,
+        "alert": false
+      },
+      {
+        "index": 18,
+        "path": "[[\"key\",\"sensors\"],[\"index\",18]]",
+        "ks": 0.0048828125,
+        "psi": 0.00024794256908086096,
+        "standardized_mean_shift": -0.01592940438955995,
+        "alert": false
+      },
+      {
+        "index": 23,
+        "path": "[[\"key\",\"settings\"],[\"index\",2]]",
+        "ks": 0.0048828125,
+        "psi": 0.00024794256908086096,
+        "standardized_mean_shift": -0.015929404389558713,
+        "alert": false
+      }
+    ],
+    "interpretation": "Input-distribution alarm; correlated rows, no calibrated p-values; feature ranking is not causal attribution."
+  },
+  "wall_seconds": 9.510311177999938
+}

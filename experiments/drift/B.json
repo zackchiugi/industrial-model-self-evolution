@@ -1,0 +1,574 @@
+{
+  "dataset": "B",
+  "execution": "local_input_drift_audit",
+  "reference_sha256": "edc059f8f7774c9496be156cc888a30c1e1b570ac5eac80604d9a9a835ed5d36",
+  "train": {
+    "status": "measured",
+    "alert": false,
+    "reference_rows": 2048,
+    "observed_rows": 7032,
+    "sampled_observed_rows": 2048,
+    "ks_threshold": 0.1,
+    "flagged_features": 0,
+    "features": [
+      {
+        "index": 20,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"crest_factor\"]]",
+        "ks": 0.044921875,
+        "psi": 0.015783458843349786,
+        "standardized_mean_shift": 0.04580695544411626,
+        "alert": false
+      },
+      {
+        "index": 22,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"impulse_factor\"]]",
+        "ks": 0.044921875,
+        "psi": 0.013319506792589052,
+        "standardized_mean_shift": 0.04908317747538933,
+        "alert": false
+      },
+      {
+        "index": 24,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"margin_factor\"]]",
+        "ks": 0.044921875,
+        "psi": 0.016986018178702714,
+        "standardized_mean_shift": 0.05012239718143441,
+        "alert": false
+      },
+      {
+        "index": 18,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"band2_energy_2k_6k\"]]",
+        "ks": 0.03955078125,
+        "psi": 0.01350930730126305,
+        "standardized_mean_shift": 0.011773987180203149,
+        "alert": false
+      },
+      {
+        "index": 1,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"band2_energy_2k_6k\"]]",
+        "ks": 0.03759765625,
+        "psi": 0.011053004057639017,
+        "standardized_mean_shift": -0.012777809502950705,
+        "alert": false
+      },
+      {
+        "index": 26,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"peak\"]]",
+        "ks": 0.03662109375,
+        "psi": 0.007978574871994765,
+        "standardized_mean_shift": 0.016914349562570822,
+        "alert": false
+      },
+      {
+        "index": 29,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"shape_factor\"]]",
+        "ks": 0.03271484375,
+        "psi": 0.00617733825504382,
+        "standardized_mean_shift": 0.055724244174274636,
+        "alert": false
+      },
+      {
+        "index": 30,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"skewness\"]]",
+        "ks": 0.03271484375,
+        "psi": 0.005941125240521132,
+        "standardized_mean_shift": -0.05314499673500118,
+        "alert": false
+      },
+      {
+        "index": 8,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"mean_abs\"]]",
+        "ks": 0.0322265625,
+        "psi": 0.006772088071374341,
+        "standardized_mean_shift": -0.0005199926132074131,
+        "alert": false
+      },
+      {
+        "index": 27,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"peak_to_peak\"]]",
+        "ks": 0.0322265625,
+        "psi": 0.007817414045537402,
+        "standardized_mean_shift": 0.012831238030879665,
+        "alert": false
+      },
+      {
+        "index": 28,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"rms\"]]",
+        "ks": 0.0322265625,
+        "psi": 0.0109003687234281,
+        "standardized_mean_shift": 0.005880956132277844,
+        "alert": false
+      },
+      {
+        "index": 25,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"mean_abs\"]]",
+        "ks": 0.03173828125,
+        "psi": 0.010940836385961864,
+        "standardized_mean_shift": 0.00412466526404165,
+        "alert": false
+      },
+      {
+        "index": 33,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"spectral_rms\"]]",
+        "ks": 0.03173828125,
+        "psi": 0.010421662566974266,
+        "standardized_mean_shift": 0.005886878331485239,
+        "alert": false
+      },
+      {
+        "index": 10,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"peak_to_peak\"]]",
+        "ks": 0.03125,
+        "psi": 0.007690290934761285,
+        "standardized_mean_shift": 0.009487910094252691,
+        "alert": false
+      },
+      {
+        "index": 16,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"spectral_rms\"]]",
+        "ks": 0.03125,
+        "psi": 0.0076735213504663,
+        "standardized_mean_shift": -4.3201288893815725e-05,
+        "alert": false
+      },
+      {
+        "index": 31,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"spectral_centroid\"]]",
+        "ks": 0.03125,
+        "psi": 0.005748543746526609,
+        "standardized_mean_shift": -0.035025764238490256,
+        "alert": false
+      },
+      {
+        "index": 11,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"rms\"]]",
+        "ks": 0.03076171875,
+        "psi": 0.007377416347576691,
+        "standardized_mean_shift": -3.822227918882775e-05,
+        "alert": false
+      },
+      {
+        "index": 23,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"kurtosis\"]]",
+        "ks": 0.0302734375,
+        "psi": 0.007339684018525855,
+        "standardized_mean_shift": 0.05682073532424426,
+        "alert": false
+      },
+      {
+        "index": 12,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"shape_factor\"]]",
+        "ks": 0.02978515625,
+        "psi": 0.011230220033258586,
+        "standardized_mean_shift": 0.013068800874984788,
+        "alert": false
+      },
+      {
+        "index": 17,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"band1_energy_0_2k\"]]",
+        "ks": 0.02880859375,
+        "psi": 0.006218246235361678,
+        "standardized_mean_shift": 0.0021900220782510404,
+        "alert": false
+      },
+      {
+        "index": 9,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"peak\"]]",
+        "ks": 0.0283203125,
+        "psi": 0.008475665068188786,
+        "standardized_mean_shift": 0.009363595342983613,
+        "alert": false
+      },
+      {
+        "index": 0,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"band1_energy_0_2k\"]]",
+        "ks": 0.02685546875,
+        "psi": 0.010106479562542452,
+        "standardized_mean_shift": -0.003479312693459722,
+        "alert": false
+      },
+      {
+        "index": 32,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"spectral_kurtosis\"]]",
+        "ks": 0.02490234375,
+        "psi": 0.005049529638215214,
+        "standardized_mean_shift": -0.034126871480708296,
+        "alert": false
+      },
+      {
+        "index": 2,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"band3_energy_6k_12k\"]]",
+        "ks": 0.02392578125,
+        "psi": 0.0055346394073503904,
+        "standardized_mean_shift": 0.004857048158911652,
+        "alert": false
+      },
+      {
+        "index": 3,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"crest_factor\"]]",
+        "ks": 0.02392578125,
+        "psi": 0.005523909497803249,
+        "standardized_mean_shift": 0.034848312377933996,
+        "alert": false
+      },
+      {
+        "index": 5,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"impulse_factor\"]]",
+        "ks": 0.0234375,
+        "psi": 0.005956416632404646,
+        "standardized_mean_shift": 0.034007032480507224,
+        "alert": false
+      },
+      {
+        "index": 7,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"margin_factor\"]]",
+        "ks": 0.02294921875,
+        "psi": 0.004963149878005225,
+        "standardized_mean_shift": 0.03358599460737499,
+        "alert": false
+      },
+      {
+        "index": 14,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"spectral_centroid\"]]",
+        "ks": 0.02294921875,
+        "psi": 0.0119286158812334,
+        "standardized_mean_shift": -0.015496529684129557,
+        "alert": false
+      },
+      {
+        "index": 6,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"kurtosis\"]]",
+        "ks": 0.02197265625,
+        "psi": 0.004804335112229456,
+        "standardized_mean_shift": 0.015621630879384523,
+        "alert": false
+      },
+      {
+        "index": 21,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"dominant_freq\"]]",
+        "ks": 0.021484375,
+        "psi": 0.006032739155330952,
+        "standardized_mean_shift": 0.017571642696592147,
+        "alert": false
+      },
+      {
+        "index": 15,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"spectral_kurtosis\"]]",
+        "ks": 0.02001953125,
+        "psi": 0.00838190615760711,
+        "standardized_mean_shift": -0.011974429507739293,
+        "alert": false
+      },
+      {
+        "index": 13,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"skewness\"]]",
+        "ks": 0.01953125,
+        "psi": 0.013710071573653695,
+        "standardized_mean_shift": 0.03490095991386213,
+        "alert": false
+      },
+      {
+        "index": 4,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"dominant_freq\"]]",
+        "ks": 0.015625,
+        "psi": 0.006339520879542251,
+        "standardized_mean_shift": 0.004152985593691677,
+        "alert": false
+      },
+      {
+        "index": 19,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"band3_energy_6k_12k\"]]",
+        "ks": 0.01318359375,
+        "psi": 0.0033636451741507543,
+        "standardized_mean_shift": 0.00024811435004809686,
+        "alert": false
+      }
+    ],
+    "interpretation": "Input-distribution alarm; correlated rows, no calibrated p-values; feature ranking is not causal attribution."
+  },
+  "validation": {
+    "status": "measured",
+    "alert": true,
+    "reference_rows": 2048,
+    "observed_rows": 1679,
+    "sampled_observed_rows": 1679,
+    "ks_threshold": 0.1,
+    "flagged_features": 34,
+    "features": [
+      {
+        "index": 2,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"band3_energy_6k_12k\"]]",
+        "ks": 0.7498289997766527,
+        "psi": 3.5609286413126338,
+        "standardized_mean_shift": -0.46080227518576916,
+        "alert": true
+      },
+      {
+        "index": 14,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"spectral_centroid\"]]",
+        "ks": 0.6299421391081,
+        "psi": 4.021704244998917,
+        "standardized_mean_shift": -1.0509428205920852,
+        "alert": true
+      },
+      {
+        "index": 8,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"mean_abs\"]]",
+        "ks": 0.5423801369863014,
+        "psi": 1.8754984936975412,
+        "standardized_mean_shift": -0.4061010544168635,
+        "alert": true
+      },
+      {
+        "index": 30,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"skewness\"]]",
+        "ks": 0.5423740298354676,
+        "psi": 2.1341706242731067,
+        "standardized_mean_shift": 0.7780797329743104,
+        "alert": true
+      },
+      {
+        "index": 31,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"spectral_centroid\"]]",
+        "ks": 0.5232176425699822,
+        "psi": 3.3868715449109357,
+        "standardized_mean_shift": -0.7818145275121088,
+        "alert": true
+      },
+      {
+        "index": 19,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"band3_energy_6k_12k\"]]",
+        "ks": 0.5230853209685825,
+        "psi": 1.5768889379831545,
+        "standardized_mean_shift": -0.3137518955755188,
+        "alert": true
+      },
+      {
+        "index": 11,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"rms\"]]",
+        "ks": 0.5201285875148898,
+        "psi": 1.913525086873781,
+        "standardized_mean_shift": -0.3853157412319214,
+        "alert": true
+      },
+      {
+        "index": 16,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"spectral_rms\"]]",
+        "ks": 0.5162383324337403,
+        "psi": 1.9032653151691086,
+        "standardized_mean_shift": -0.3851473255969669,
+        "alert": true
+      },
+      {
+        "index": 21,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"dominant_freq\"]]",
+        "ks": 0.5119342451794223,
+        "psi": 1.638875791966035,
+        "standardized_mean_shift": -0.570135490819864,
+        "alert": true
+      },
+      {
+        "index": 4,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"dominant_freq\"]]",
+        "ks": 0.4745186401876117,
+        "psi": 2.614503253266451,
+        "standardized_mean_shift": 0.4209384875245144,
+        "alert": true
+      },
+      {
+        "index": 25,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"mean_abs\"]]",
+        "ks": 0.4255134078134306,
+        "psi": 4.734612688910943,
+        "standardized_mean_shift": -0.26523615762812813,
+        "alert": true
+      },
+      {
+        "index": 28,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"rms\"]]",
+        "ks": 0.4243114623659917,
+        "psi": 4.715304697495162,
+        "standardized_mean_shift": -0.27001646994525025,
+        "alert": true
+      },
+      {
+        "index": 33,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"spectral_rms\"]]",
+        "ks": 0.4243114623659917,
+        "psi": 4.715304697495162,
+        "standardized_mean_shift": -0.26987287394292375,
+        "alert": true
+      },
+      {
+        "index": 17,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"band1_energy_0_2k\"]]",
+        "ks": 0.41812986245533057,
+        "psi": 4.931039316600271,
+        "standardized_mean_shift": -0.1158035455013739,
+        "alert": true
+      },
+      {
+        "index": 0,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"band1_energy_0_2k\"]]",
+        "ks": 0.3978907645920191,
+        "psi": 3.3543648658553886,
+        "standardized_mean_shift": -0.028758648714487748,
+        "alert": true
+      },
+      {
+        "index": 27,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"peak_to_peak\"]]",
+        "ks": 0.39416685666691487,
+        "psi": 3.4631141901429827,
+        "standardized_mean_shift": -0.3169392661768764,
+        "alert": true
+      },
+      {
+        "index": 26,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"peak\"]]",
+        "ks": 0.39052350496947585,
+        "psi": 3.111088399452955,
+        "standardized_mean_shift": -0.3169079866970431,
+        "alert": true
+      },
+      {
+        "index": 10,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"peak_to_peak\"]]",
+        "ks": 0.3854743453134306,
+        "psi": 1.1769695931338935,
+        "standardized_mean_shift": -0.30542315275936144,
+        "alert": true
+      },
+      {
+        "index": 9,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"peak\"]]",
+        "ks": 0.37740970722900535,
+        "psi": 1.1766227543272327,
+        "standardized_mean_shift": -0.2951915001323892,
+        "alert": true
+      },
+      {
+        "index": 6,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"kurtosis\"]]",
+        "ks": 0.36280489223496126,
+        "psi": 0.8964785066045117,
+        "standardized_mean_shift": 0.37196914649594154,
+        "alert": true
+      },
+      {
+        "index": 18,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"band2_energy_2k_6k\"]]",
+        "ks": 0.3586726776541096,
+        "psi": 2.1039480477385704,
+        "standardized_mean_shift": -0.1605365326557171,
+        "alert": true
+      },
+      {
+        "index": 3,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"crest_factor\"]]",
+        "ks": 0.33520347863311495,
+        "psi": 0.6071834529227231,
+        "standardized_mean_shift": 0.3427641298905846,
+        "alert": true
+      },
+      {
+        "index": 5,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"impulse_factor\"]]",
+        "ks": 0.3351014019691781,
+        "psi": 0.6038140276956483,
+        "standardized_mean_shift": 0.3395349036740557,
+        "alert": true
+      },
+      {
+        "index": 7,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"margin_factor\"]]",
+        "ks": 0.33487601902173914,
+        "psi": 0.6115246770433543,
+        "standardized_mean_shift": 0.3368488201523505,
+        "alert": true
+      },
+      {
+        "index": 32,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"spectral_kurtosis\"]]",
+        "ks": 0.29040665481685524,
+        "psi": 0.4872336609119901,
+        "standardized_mean_shift": 0.7183899991980914,
+        "alert": true
+      },
+      {
+        "index": 23,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"kurtosis\"]]",
+        "ks": 0.2826188742368969,
+        "psi": 0.8746887246429645,
+        "standardized_mean_shift": -0.3563255189067756,
+        "alert": true
+      },
+      {
+        "index": 29,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"shape_factor\"]]",
+        "ks": 0.28230217484365694,
+        "psi": 0.7146544374111747,
+        "standardized_mean_shift": -0.3630042703724691,
+        "alert": true
+      },
+      {
+        "index": 13,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"skewness\"]]",
+        "ks": 0.2724783865023824,
+        "psi": 0.472578115691686,
+        "standardized_mean_shift": 0.29269829496826344,
+        "alert": true
+      },
+      {
+        "index": 1,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"band2_energy_2k_6k\"]]",
+        "ks": 0.2536814486859738,
+        "psi": 1.3919062445542514,
+        "standardized_mean_shift": 0.019058149016343992,
+        "alert": true
+      },
+      {
+        "index": 12,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"shape_factor\"]]",
+        "ks": 0.227352648991215,
+        "psi": 0.5892650764672503,
+        "standardized_mean_shift": 0.1471804567371701,
+        "alert": true
+      },
+      {
+        "index": 22,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"impulse_factor\"]]",
+        "ks": 0.18326745365544972,
+        "psi": 0.2441235233150302,
+        "standardized_mean_shift": -0.29588497066891617,
+        "alert": true
+      },
+      {
+        "index": 24,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"margin_factor\"]]",
+        "ks": 0.18146439007593806,
+        "psi": 0.2595814615458114,
+        "standardized_mean_shift": -0.3035089573173883,
+        "alert": true
+      },
+      {
+        "index": 20,
+        "path": "[[\"key\",\"features\"],[\"key\",\"vertical\"],[\"key\",\"crest_factor\"]]",
+        "ks": 0.1751437797796307,
+        "psi": 0.21655173230745092,
+        "standardized_mean_shift": -0.27361844019778897,
+        "alert": true
+      },
+      {
+        "index": 15,
+        "path": "[[\"key\",\"features\"],[\"key\",\"horizontal\"],[\"key\",\"spectral_kurtosis\"]]",
+        "ks": 0.1531254653067302,
+        "psi": 0.3053747446769987,
+        "standardized_mean_shift": 0.30964559856439766,
+        "alert": true
+      }
+    ],
+    "interpretation": "Input-distribution alarm; correlated rows, no calibrated p-values; feature ranking is not causal attribution."
+  },
+  "wall_seconds": 1.2690699600007065
+}

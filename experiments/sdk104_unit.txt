@@ -1,0 +1,29 @@
+test_describe_reports_workspace_v2 (tests.test_sdk.SdkProtocolTest.test_describe_reports_workspace_v2) ... ok
+test_parent_file_digest_is_checked (tests.test_sdk.SdkProtocolTest.test_parent_file_digest_is_checked) ... ok
+test_predict_rejects_ambiguous_and_negative_outputs (tests.test_sdk.SdkProtocolTest.test_predict_rejects_ambiguous_and_negative_outputs) ... ok
+test_predict_replies_before_eof (tests.test_sdk.SdkProtocolTest.test_predict_replies_before_eof) ... ok
+test_prediction_context_leaves_stdin_on_the_first_sample (tests.test_sdk.SdkProtocolTest.test_prediction_context_leaves_stdin_on_the_first_sample) ... ok
+test_streamed_upload_checks_chunks_and_mutation (tests.test_sdk.SdkProtocolTest.test_streamed_upload_checks_chunks_and_mutation) ... ok
+test_train_reads_prompt_data_and_leaves_prompt_attachment_to_host (tests.test_sdk.SdkProtocolTest.test_train_reads_prompt_data_and_leaves_prompt_attachment_to_host) ... /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/case.py:589: ResourceWarning: unclosed file <_io.TextIOWrapper name=5 encoding='UTF-8'>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/case.py:589: ResourceWarning: unclosed file <_io.TextIOWrapper name=7 encoding='UTF-8'>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_transport_forwards_one_nonstreaming_call (tests.test_sdk.SdkProtocolTest.test_transport_forwards_one_nonstreaming_call) ... ok
+test_unfinished_round_is_a_participant_error (tests.test_sdk.SdkProtocolTest.test_unfinished_round_is_a_participant_error) ... ok
+test_describe_and_predict_isolate_import_and_callback_logs (tests.test_contract_regressions.ContractRegressions.test_describe_and_predict_isolate_import_and_callback_logs) ... ok
+test_describe_rejects_missing_module_dependency_and_callbacks (tests.test_contract_regressions.ContractRegressions.test_describe_rejects_missing_module_dependency_and_callbacks) ... ok
+test_interrupted_finish_and_write_also_poison_stream (tests.test_contract_regressions.ContractRegressions.test_interrupted_finish_and_write_also_poison_stream) ... ok
+test_interrupted_rpc_never_consumes_late_reply_or_sends_again (tests.test_contract_regressions.ContractRegressions.test_interrupted_rpc_never_consumes_late_reply_or_sends_again) ... ok
+test_nested_checkpoint_uses_artifact_root (tests.test_contract_regressions.ContractRegressions.test_nested_checkpoint_uses_artifact_root) ... ok
+test_unicode_configuration_limit_uses_ascii_json_encoding (tests.test_contract_regressions.ContractRegressions.test_unicode_configuration_limit_uses_ascii_json_encoding) ... ok
+test_missing_finish_reason_still_finishes_each_choice (tests.test_transport_regressions.TransportRegressionTests.test_missing_finish_reason_still_finishes_each_choice) ... ok
+test_stream_preserves_choices_tools_envelope_and_requested_usage (tests.test_transport_regressions.TransportRegressionTests.test_stream_preserves_choices_tools_envelope_and_requested_usage) ... ok
+test_stream_without_usage_and_nonstream_each_call_model_once (tests.test_transport_regressions.TransportRegressionTests.test_stream_without_usage_and_nonstream_each_call_model_once) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 8.461s
+
+OK
