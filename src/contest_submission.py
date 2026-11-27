@@ -1,94 +1,122 @@
-"""Bounded model-guided continuation using contest_harness 1.0.2.
-Local experiment results do not establish real-gateway performance.
-"""
-import os,json,math,tempfile,shutil,time,platform
+"""Model-guided, host-verified industrial checkpoint continuation."""
+import os,json,math,tempfile,shutil,platform
 from pathlib import Path
 from functools import lru_cache
-from drift import inputs_only,reference,diagnose
+from drift import reference,diagnose
 from baselines.model import Model,checkpoint_digest
-from baselines.train import train_run,metrics
 from baselines.data import read_dataset
 from baselines.predict import predict as baseline_predict
+from adaptive_train import improve
 TASKS=('classification','regression')
 
 def parse_object(text):
+    if not isinstance(text,str):return {}
+    # Strip completed reasoning and a Markdown fence, never execute model text.
+    text=text.rsplit('</think>',1)[-1].strip()
+    if text.startswith('```'):
+        text=text.split('\n',1)[-1].rsplit('```',1)[0].strip()
     try:
         obj=json.loads(text)
         return obj if isinstance(obj,dict) else {}
     except (ValueError,TypeError):return {}
 
-def numeric_metric(receipt, name):
-    # SDK examples expose summary.metrics. Unknown host schemas fail closed.
-    value=receipt.get('summary',{}).get('metrics',{}).get(name)
+def numeric_metric(receipt,name):
+    summary=receipt.get('summary',{})
+    value=summary.get('metrics',{}).get(name) if isinstance(summary,dict) else None
     return float(value) if isinstance(value,(int,float)) and not isinstance(value,bool) and math.isfinite(value) else None
 
 def train(rnd):
     history=rnd.history()
     declared=rnd.parent.descriptor['checkpoint_paths']
-    if len(declared)!=1:raise ValueError('Expected exactly one compatible NumPy checkpoint')
-    parent_path=rnd.parent.path(declared[0]);parent=Model.load(parent_path)
-    key=rnd.dataset_key
+    if len(declared)!=1:raise ValueError('Expected one NumPy checkpoint')
+    parent_path=rnd.parent.path(declared[0]);parent=Model.load(parent_path);key=rnd.dataset_key
     if parent.meta.get('profile')!=key:raise ValueError('Parent profile mismatch')
-    if rnd.task.get('task',rnd.task.get('task_type',parent.meta['task']))!=parent.meta['task']:raise ValueError('Task contract mismatch')
-    work=Path(tempfile.mkdtemp(prefix='driftguard-',dir=os.environ.get('CONTEST_WORK','/workspace')))
-    state=rnd.state_workspace(work/'state')
-    previous={}
+    if rnd.task.get('task',rnd.task.get('task_type',parent.meta['task']))!=parent.meta['task']:raise ValueError('Task mismatch')
+    work=Path(tempfile.mkdtemp(prefix='industrial-',dir=os.environ.get('CONTEST_WORK','/workspace')))
+    state=rnd.state_workspace(work/'state');previous={}
     if (state/'decision.json').exists():previous=json.loads((state/'decision.json').read_text())
+    train_data=read_dataset(rnd.data.train_path,parent.meta['task'],parent.meta['classes'],parent.meta['paths'])
+    validation=read_dataset(rnd.data.validation_path,parent.meta['task'],parent.meta['classes'],parent.meta['paths'])
+    if set(train_data['ids'])&set(validation['ids']):raise ValueError('Train-validation overlap')
     ref_file=state/'drift_reference.json'
-    train_x=inputs_only(rnd.data.train_path,parent.meta['paths'])
-    if ref_file.exists(): ref=json.loads(ref_file.read_text())
+    if ref_file.exists():ref=json.loads(ref_file.read_text())
     else:
-        ref=reference(train_x,parent.meta['paths'])
-        ref_file.write_text(json.dumps(ref))
-    drift_train=diagnose(ref,train_x,parent.meta['paths'])
-    drift_validation=diagnose(ref,inputs_only(rnd.data.validation_path,parent.meta['paths']),parent.meta['paths'])
-    drift_summary={name:{**{k:v for k,v in obj.items() if k!='features'},'top_features':obj['features'][:5]} for name,obj in [('train_vs_frozen_reference',drift_train),('validation_vs_frozen_reference',drift_validation)]}
-    lr=float(previous.get('learning_rate',parent.meta['learning_rate']))
-    if previous:lr*=0.8 if previous.get('accepted') else 0.5
-    lr=max(1e-7,min(0.01,lr))
-    request={'dataset':key,'round':rnd.round_index,'history':history[-10:],'drift_diagnostics':drift_summary,'previous_decision':previous,'proposal':{'epochs':5 if drift_validation.get('alert') or drift_train.get('alert') else 1,'learning_rate':lr},'allowed_epochs':[1,3,5], 'instruction':'Read history and propose a continuation experiment. Reply with JSON only: epochs (1,3,5), learning_rate (1e-7 to 0.01), hypothesis. Keep the parent weights, Adam state and normalization. No code execution or new data.'}
-    plan=rnd.model([{'role':'user','content':json.dumps(request,ensure_ascii=False)}],max_tokens=min(512,rnd.max_output_tokens),temperature=0)
-    proposal=parse_object(plan.text);epochs=proposal.get('epochs',5)
-    if type(epochs)!=int or epochs not in [1,3,5]:epochs=5
-    proposed_lr=proposal.get('learning_rate',lr)
-    if isinstance(proposed_lr,(int,float)) and not isinstance(proposed_lr,bool) and math.isfinite(proposed_lr) and 1e-7<=proposed_lr<=0.01:lr=float(proposed_lr)
-    hyp=proposal.get('hypothesis','Five-epoch continuation with history-based learning-rate control.')
-    if not isinstance(hyp,str) or not hyp.strip():hyp='Continue selected parent with bounded optimizer settings.'
-    hyp=hyp[:500]
+        ref=reference(train_data['x'],parent.meta['paths']);ref_file.write_text(json.dumps(ref))
+    drift={}
+    for name,data in [('train',train_data),('validation',validation)]:
+        d=diagnose(ref,data['x'],parent.meta['paths'])
+        drift[name]={'alert':d['alert'],'flagged_features':d.get('flagged_features',0),'top_features':d['features'][:3]}
+    # The model's previous-round advice affects the next bounded experiment.
+    defaults={'A':(.001,100),'B':(.01,100),'C':(.003,80)}
+    lr,epochs=defaults[key]
+    suggested=previous.get('next_learning_rate')
+    if isinstance(suggested,(int,float)) and not isinstance(suggested,bool) and .0001<=suggested<=.01:lr=float(suggested)
+    if rnd.round_index>1:epochs={'A':20,'B':40,'C':25}[key]
+    rates=sorted(set([lr, max(.0001,lr*.3)]))
     candidate=work/'candidate'
-    fit_started=time.perf_counter()
-    report=train_run(key,rnd.data.train_path,rnd.data.validation_path,candidate,resume=parent_path,epochs=epochs,learning_rate=lr,stage_id=f'round-{rnd.round_index}')
-    fit_wall_seconds=time.perf_counter()-fit_started
-    config={'epochs':epochs,'learning_rate':lr,'batch_size':parent.meta['batch_size'],'controller':'bounded_llm_advice_with_metric_gate','parent_checkpoint_sha256':checkpoint_digest(parent_path)}
-    changes='Continue parent weights and Adam state; preserve original input and target scaling.'
-    # Include actual inference source as auditable artifact files; /app provides identical code.
+    report=improve(parent,train_data,validation,candidate,rates,epochs)
+    config={'learning_rates':rates,'maximum_epochs_per_branch':epochs,'check_every':5,
+            'selected_training_noise_std':report['selected_configuration']['training_noise_std'],
+            'selected_learning_rate':report['selected_configuration']['learning_rate'],
+            'selected_additional_epochs':report['selected_configuration']['additional_epochs'],
+            'batch_size':parent.meta['batch_size'],'controller':'compact_model_decision_host_gate',
+            'parent_checkpoint_sha256':checkpoint_digest(parent_path)}
+    hyp='从父检查点及 Adam 状态继续训练；按公开验证指标选择学习率与训练轮次，提高漂移适应性。'
+    changes='保留父模型参数、优化器和归一化；梯度仅使用训练集，公开验证集用于选优。'
     (candidate/'baselines').mkdir()
-    for name in ['model.py','data.py','predict.py','__init__.py']:
-        shutil.copyfile(Path(__file__).parent/'baselines'/name,candidate/'baselines'/name)
-    submission=rnd.submit_candidate(candidate,hypothesis=hyp,change_summary=changes,configuration=config,seed=parent.meta['seed'],checkpoint_paths=['checkpoint.npz'],code_paths=['baselines/'+n for n in ['model.py','data.py','predict.py','__init__.py']],predict_argv=['python3','/app/harness.py','predict'])
+    code=['model.py','data.py','predict.py','__init__.py']
+    for name in code:shutil.copyfile(Path(__file__).parent/'baselines'/name,candidate/'baselines'/name)
+    submission=rnd.submit_candidate(candidate,hypothesis=hyp,change_summary=changes,configuration=config,
+        seed=parent.meta['seed'],checkpoint_paths=['checkpoint.npz'],code_paths=['baselines/'+n for n in code],
+        predict_argv=['python3','/app/harness.py','predict'])
     metric='macro_f1' if key=='A' else 'rmse'
     before=numeric_metric(rnd.parent.receipt,metric);after=numeric_metric(submission,metric)
-    eligible=before is not None and after is not None and (after>before+1e-12 if key=='A' else after<before-1e-12)
-    decision=rnd.model([{'role':'user','content':json.dumps({'instruction':'Read the experiment and host measurements. Reply JSON with select: candidate or parent, and reason. Candidate may only be accepted if eligible is true. Explain the evidence.', 'hypothesis':hyp,'configuration':config,'parent_host_receipt':rnd.parent.receipt.get('summary'),'candidate_host_receipt':submission.get('summary'),'local_training_diagnostics':report,'eligible':eligible},ensure_ascii=False)}],max_tokens=min(512,rnd.max_output_tokens),temperature=0)
-    advice=parse_object(decision.text)
+    eligible=before is not None and after is not None and (after>before+1e-9 if key=='A' else after<before-1e-9)
+    # Bounded summaries prevent recursive state/history prompt growth.
+    past=[{'id':h['id'],'reason':str(h.get('reason',''))[:240]} for h in history[-3:]]
+    request={'dataset':key,'round':rnd.round_index,'history':past,
+        'previous':{k:previous.get(k) for k in ['accepted','parent_host_metric','candidate_host_metric','reason']},
+        'drift':drift,'configuration':config,'metric':metric,'parent_host_metric':before,'candidate_host_metric':after,
+        'eligible':eligible,'local_before':report['validation_before'],'local_after':report['validation_after'],
+        'instruction':'Act as experiment controller. Review history, drift and this continuation experiment. Select candidate when eligible=true and measured improvement is credible; otherwise parent. Only host metrics authorize acceptance. Reply one JSON object: select (candidate or parent), reason (brief), next_learning_rate (0.0001 to 0.01). No reasoning tags.'}
+    responses=[];advice={}
+    for budget in [384,1024]:
+        response=rnd.model([{'role':'user','content':json.dumps(request,ensure_ascii=False,separators=(',',':'))}],
+            max_tokens=min(budget,rnd.max_output_tokens),temperature=0,enable_thinking=False,response_format={'type':'json_object'})
+        responses.append({'call_id':response.call_id,'text':response.text,'usage':response.response.get('usage'),
+            'finish_reason':response.response.get('choices',[{}])[0].get('finish_reason')})
+        advice=parse_object(response.text)
+        if advice.get('select') in ('candidate','parent'):break
+        request['instruction']='Previous response was invalid. Return ONLY JSON: {"select":"candidate" or "parent","reason":"brief","next_learning_rate":0.001}. Choose candidate only when eligible=true.'
     accepted=bool(eligible and advice.get('select')=='candidate')
     selected=submission['artifact_id'] if accepted else rnd.parent.artifact_id
-    why='Accepted a strict host-measured primary-metric improvement.' if accepted else 'Retained parent: missing/non-improving host metrics or model did not select candidate.'
-    explanation=advice.get('reason','')
-    if isinstance(explanation,str):why+=' Model rationale: '+explanation[:700]
-    evidence={'round':rnd.round_index,'learning_rate':lr,'accepted':accepted,'selected_artifact_id':selected,'parent_host_metric':before,'candidate_host_metric':after,'reason':why,'model_call_ids':list(rnd.call_ids),'history_ids':[x['id'] for x in history],'plan_response':plan.text,'decision_response':decision.text,'configuration':config,'drift_diagnostics':drift_summary,'fit_and_local_evaluation_wall_seconds':fit_wall_seconds,'model_name':rnd.model_name,'model_usage':[plan.response.get('usage'),decision.response.get('usage')],'python_version':platform.python_version()}
+    why=('采纳：宿主验证指标改善。' if accepted else '保留父模型：候选未获宿主指标与模型决策同时认可。')
+    why+=str(advice.get('reason','模型未返回有效选择，安全保留。'))[:500]
+    evidence={'round':rnd.round_index,'accepted':accepted,'selected_artifact_id':selected,
+        'parent_host_metric':before,'candidate_host_metric':after,'reason':why,
+        'next_learning_rate':advice.get('next_learning_rate'), 'model_call_ids':list(rnd.call_ids),
+        'history_ids':[h['id'] for h in history],'model_responses':responses,'configuration':config,
+        'drift_diagnostics':drift,'training_seconds':report['elapsed_seconds'],'model_name':rnd.model_name,
+        'parent_receipt':rnd.parent.receipt.get('summary'),'candidate_receipt':submission.get('summary'),
+        'python_version':platform.python_version()}
     (state/'decision.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2))
     (state/f'round_{rnd.round_index:04d}.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2))
     rnd.save_state(state)
-    rnd.finish(selected_artifact_id=selected,hypothesis=hyp,change_summary=changes,reason=why,configuration=config,seed=parent.meta['seed'],history_ids=[x['id'] for x in history],model_call_ids=list(rnd.call_ids))
+    rnd.finish(selected_artifact_id=selected,hypothesis=hyp,change_summary=changes,reason=why,
+        configuration=config,seed=parent.meta['seed'],history_ids=[h['id'] for h in history],model_call_ids=list(rnd.call_ids))
 
 @lru_cache(maxsize=4)
 def load_model(path):return Model.load(path)
 
+@lru_cache(maxsize=4)
+def checked_path(model_dir,artifact_path):
+    root=Path(model_dir).resolve();path=Path(artifact_path).resolve()
+    if not path.is_relative_to(root):raise ValueError('Checkpoint outside artifact')
+    return str(path)
+
 def predict(sample,model_dir):
-    root=Path(model_dir).resolve();path=Path(os.environ.get('CONTEST_ARTIFACT_PATH',str(root/'checkpoint.npz'))).resolve()
-    if not path.is_relative_to(root):raise ValueError('Checkpoint must be inside selected artifact')
-    model=load_model(str(path))
+    path=checked_path(str(model_dir),os.environ.get('CONTEST_ARTIFACT_PATH',str(Path(model_dir)/'checkpoint.npz')))
+    model=load_model(path)
     if model.meta['task']!=sample.task:raise ValueError('Prediction task mismatch')
     if sample.dataset_key and model.meta.get('profile')!=sample.dataset_key:raise ValueError('Prediction profile mismatch')
     return baseline_predict(model,sample.inputs)['outputs']

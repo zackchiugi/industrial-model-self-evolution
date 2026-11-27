@@ -15,12 +15,14 @@ class Loopback:
         f=json.loads(line);self.frames.append(f);t=f['type'];r={'id':f.get('id')}
         if t=='history_request':r.update(type='history_response',records=[{'id':'prior-1','note':'mock history'}])
         elif t=='model_request':
-            self.calls+=1;payload={'epochs':1,'learning_rate':0.001,'hypothesis':'Test continuation.'} if self.calls==1 else {'select':'candidate','reason':'mock comparison'}
-            r.update(type='model_response',call_id=f'mock-{self.calls}',response={'choices':[{'message':{'content':json.dumps(payload)}}]})
+            self.calls+=1;payload={'select':'candidate','reason':'mock comparison','next_learning_rate':0.001}
+            content=json.dumps(payload)
+            if self.mode=='malformed' or (self.mode=='retry' and self.calls==1):content=''
+            r.update(type='model_response',call_id=f'mock-{self.calls}',response={'choices':[{'message':{'content':content}}]})
         elif t=='upload_begin_request':r.update(type='upload_begin_response',upload_id='mock-upload')
         elif t=='upload_chunk_request':r.update(type='upload_chunk_response',offset=f['offset']+len(base64.b64decode(f['data_base64'])))
         elif t=='upload_finish_request':r.update(type='upload_finish_response',upload_id=f['upload_id'])
-        elif t=='candidate_request':r.update(type='candidate_response',artifact_id='candidate-test',summary={'metrics':{'macro_f1':0.8 if self.mode=='accept' else 0.4}} if self.mode!='missing' else {})
+        elif t=='candidate_request':r.update(type='candidate_response',artifact_id='candidate-test',summary={'metrics':{'macro_f1':0.8 if self.mode in ('accept','retry','malformed') else 0.4}} if self.mode!='missing' else {})
         elif t=='state_request':r.update(type='state_response',state_sha256='sha256:'+'a'*64)
         elif t=='round_complete':r={'type':'round_ack','accepted':True}
         else:raise AssertionError(t)
@@ -33,11 +35,15 @@ class Tests(unittest.TestCase):
         frame={'resource_limits':{'artifact_upload_protocol':'chunked-v1'},'protocol':'contest.harness.workspace.v2','prompt':'test','prompt_version':'test','dataset_key':'A','round_index':2,'task_contract':{'task':'classification','public_projection':{'train_path':str(d/'public/train.jsonl'),'validation_path':str(d/'public/validation.jsonl')}},'model_name':'test-double','max_output_tokens':1024,'parent_checkpoint_sha256':checkpoint_digest(p),'parent_artifact':{'artifact_id':'parent-test','artifact':{'checkpoint_paths':['checkpoint.npz'],'code_paths':[],'predict_argv':[]},'files':[{'path':'checkpoint.npz','sha256':checkpoint_digest(p)}],'summary':{'metrics':{'macro_f1':0.7}}},'artifacts':[]}
         rnd=Round(frame,host,host);rnd.parent.root=d
         with tempfile.TemporaryDirectory() as temp,patch.dict(os.environ,{'CONTEST_WORK':temp}):sub.train(rnd)
-        rec=host.frames[-1]['record'];self.assertEqual(rec['selected_artifact_id'],'candidate-test' if mode=='accept' else 'parent-test');self.assertEqual(rec['model_call_ids'],['mock-1','mock-2']);self.assertEqual(rec['history_ids'],['prior-1']);self.assertTrue(rnd._finished)
+        rec=host.frames[-1]['record'];self.assertEqual(rec['selected_artifact_id'],'candidate-test' if mode in ('accept','retry') else 'parent-test');self.assertEqual(rec['model_call_ids'],['mock-1','mock-2'] if mode in ('retry','malformed') else ['mock-1']);self.assertEqual(rec['history_ids'],['prior-1']);self.assertTrue(rnd._finished)
+    def test_empty_reply_retry(self):self.protocol('retry')
+    def test_empty_reply_fail_closed(self):self.protocol('malformed')
     def test_protocol_accept(self):self.protocol('accept')
     def test_protocol_reject(self):self.protocol('reject')
     def test_unknown_metrics_retain_parent(self):self.protocol('missing')
-    def test_bad_model_json(self):self.assertEqual(sub.parse_object('```json\n{}\n```'),{})
+    def test_fenced_model_json(self):self.assertEqual(sub.parse_object('```json\n{"select":"candidate"}\n```'),{'select':'candidate'})
+    def test_truncated_model_json(self):self.assertEqual(sub.parse_object('{"select":'),{})
+    def test_reasoning_model_json(self):self.assertEqual(sub.parse_object('<think>text</think>{"select":"parent"}'),{'select':'parent'})
     def test_all_validation_predictions(self):
         for key in 'ABC':
             d=ROOT/('cpu-'+key.lower());m=Model.load(d/'checkpoint.npz');context={'dataset_key':key,'artifact_id':'local'}
